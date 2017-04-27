@@ -578,6 +578,24 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+            <script src="assets/js/taffy-min.js"></script>
+            <script>
+              var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": "https://micgoleague-16ca.restdb.io/rest/members",
+              "method": "GET",
+              "headers": {
+                "content-type": "application/json",
+                "x-apikey": "5901d6523d6945a41da27e5a",
+                "cache-control": "no-cache"
+              }
+            }
+
+            $.ajax(settings).done(function (response) {
+              console.log(response);
+            });
+            </script>
 
 	</body>
 
