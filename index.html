@@ -282,13 +282,15 @@
 							<article id="rules">
 								<h2 class="major">Rules</h2>
 								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
-								<ol>
+								<ol id="rulesList">
+<!--
                                     <li>You must play all quarters in each tournament. We play tournaments daily and you must participate in all of them.</li>
                                     <li>If you are not going to make a tournament please let us know at least 8 hours in advance. Do not let us know just a few hours before the tournament, because all admins could be asleep and we won't get the message.</li>
                                     <li>You must have a 20+ point differential (So Points you scored in all 3 quarters - Points you allowed must be >=20)</li>
                                     <li>When you first join the league you will be asked to submit screenshots of all your quarters for your first 5 tournaments. If your average differential is 20+ you will remain with us!</li>
                                     <li>You must play lineups close to your overall. So if your lineup is 92 you must play a lineup that's 91-93. If there are not enough 90s you can pick 1 lineup that's 89 but only if it's necessary.</li>
                                     <li>Last but not least, no bullies and no beggars are welcome. Respect each other and stay friendly.</li>
+-->
                                 </ol>
 							</article>
 
@@ -400,14 +402,15 @@
                 "cache-control": "no-cache"
               }
             }
-//            $.ajax(rulesCall).done(function (response) {
-//              document.getElementById('leagueName').innerHTML = response[0].name;
-//              document.getElementById('leagueRank').innerHTML = response[0].rank;
-//              document.getElementById('leagueRecord').innerHTML = response[0].wins + "-" + response[0].losses + "-" + response[0].draws;
-//              document.getElementById('leaguePointsFor').innerHTML = response[0].points_for;
-//              document.getElementById('leaguePointsAgainst').innerHTML = response[0].points_against;
-//            });     
-//   
+            $.ajax(rulesCall).done(function (response) {
+              var rulesList = document.getElementById('rulesList');
+              for (var i = 0; i < response.length; i++) {
+                  var liElement = document.createElement('li');
+                  liElement.innerText = response[i].text;
+                  rulesList.appendChild(liElement);
+              }
+            });     
+   
             </script>
 
 	</body>
