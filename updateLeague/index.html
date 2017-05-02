@@ -293,7 +293,7 @@ $(function () {
         $.ajax(ajaxSettings)
         .done(function (response) {
           // replaces form with a thank you message, please replace with your own functionality
-          $("#league-form").replaceWith("<div class='thank-you'>"+successMessage+"</div>");
+          $("#league-form").replaceWith("<div class='thank-you'>"+successMessage+"</div></br><div class='thank-you'><a href='.'>Update Again</a> or <a href='..'>Return to Home Page</a></div>");
         })
         .fail(function (response) {
           $("#btn-submit").button("reset");
