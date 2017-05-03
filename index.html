@@ -128,154 +128,32 @@
 												<tr>
 													<th>Username</th>
 													<th>Franchise Overall</th>
-													<th>Fans</th>
-                                                    <th>Role</th>
+													<th>Role</th>
+                                                    <th>Available for Tournaments</th>
 												</tr>
 											</thead>
-											<tbody>
-												<tr>
-													<td>Godxcel</td>
-													<td>94</td>
-													<td>7,000,000</td>
-                                                    <td>Commissioner</td>
-												</tr>
-                                                <tr>
-													<td>babydave</td>
-													<td>94</td>
-													<td>20,500,000</td>
-                                                    <td>Admin</td>
-												</tr>
-                                                <tr>
-													<td>porzingod461</td>
-													<td>94</td>
-													<td>1,500,000</td>
-                                                    <td>Admin</td>
-												</tr>
-                                                <tr>
-													<td>CharlesMonroe</td>
-													<td>94</td>
-													<td>2,300,000</td>
-                                                    <td>Admin</td>
-												</tr>
-                                                <tr>
-													<td>Smariobv</td>
-													<td>91</td>
-													<td>2,800,000</td>
-                                                    <td>Admin</td>
-												</tr>
-                                                <tr>
-													<td>Jacksonian</td>
-													<td>92</td>
-													<td>17,000,000</td>
-                                                    <td>Admin</td>
-												</tr>
-                                                <tr>
-													<td>Micgoz</td>
-													<td>93</td>
-													<td>7,400,000</td>
-                                                    <td>Admin</td>
-												</tr>
-                                                <tr>
-													<td>David</td>
-													<td>94</td>
-													<td>5,100,000</td>
-                                                    <td>Member</td>
-												</tr>
-                                                <tr>
-													<td>Qbas</td>
-													<td>93</td>
-													<td>7,500,000</td>
-                                                    <td>Member</td>
-												</tr>
-                                                <tr>
-													<td>Michael</td>
-													<td>93</td>
-													<td>1,200,000</td>
-                                                    <td>Member</td>
-												</tr>
-                                                <tr>
-													<td>AJHartline</td>
-													<td>93</td>
-													<td>8,800,000</td>
-                                                    <td>Member</td>
-												</tr>
-                                                <tr>
-													<td>mitko</td>
-													<td>92</td>
-													<td>8,100,000</td>
-                                                    <td>Member</td>
-												</tr>
-                                                <tr>
-													<td>Nakamura</td>
-													<td>92</td>
-													<td>2,000,000</td>
-                                                    <td>Member</td>
-												</tr>
-                                                <tr>
-													<td>kristian4390</td>
-													<td>92</td>
-													<td>90,900,000</td>
-                                                    <td>Member</td>
-												</tr>
-                                                <tr>
-													<td>Mugetsu</td>
-													<td>92</td>
-													<td>19,300,000</td>
-                                                    <td>Member</td>
-												</tr>
-                                                <tr>
-													<td>Upe</td>
-													<td>91</td>
-													<td>200,000</td>
-                                                    <td>Member</td>
-												</tr>
-                                                <tr>
-													<td>TheGreatOne</td>
-													<td>91</td>
-													<td>8,500,000</td>
-                                                    <td>Member</td>
-												</tr>
-                                                <tr>
-													<td>glurmp</td>
-													<td>91</td>
-													<td>2,200,000</td>
-                                                    <td>Member</td>
-												</tr>
-                                                <tr>
-													<td>runesandmagic</td>
-													<td>91</td>
-													<td>2,800,000</td>
-                                                    <td>Member</td>
-												</tr>
-                                                <tr>
-													<td>SkippersonSkip</td>
-													<td>91</td>
-													<td>160,000</td>
-                                                    <td>Member</td>
-												</tr>
-                                                <tr>
-													<td>Albertodally00</td>
-													<td>90</td>
-													<td>25,500,000</td>
-                                                    <td>Member</td>
-												</tr>
-                                                <tr>
-													<td>bigdogoncampus</td>
-													<td>90</td>
-													<td>17,000,000</td>
-                                                    <td>Member</td>
-												</tr>
+											<tbody id="membersTable">
+												
                                         
 											</tbody>
 											<tfoot>
 												<tr>
 													<td colspan="3"></td>
-													<td>23/32 Members</td>
+													<td id="membersCount"></td>
 												</tr>
 											</tfoot>
 										</table>
 									</div>
-
+                                <h3>Update Member Info</h3>
+                                <form role="form" id="members-form">
+                                <div class="form-group">
+                                  <label>Username: </label><input class="form-control" name="username" data-type="text" type="text">
+                                </div>
+                                <div class="form-group">
+                                  <label>Password: </label><input class="form-control" name="password" data-type="text" type="text">
+                                </div>
+                                <div id="fg-errors" class="form-group"></div>
+                                <button class="btn btn-primary btn-lg" id="btn-submit" type="submit">Update Info</button></form>
 							</article>
 
 						<!-- About -->
@@ -283,14 +161,6 @@
 								<h2 class="major">Rules</h2>
 								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
 								<ol id="rulesList">
-<!--
-                                    <li>You must play all quarters in each tournament. We play tournaments daily and you must participate in all of them.</li>
-                                    <li>If you are not going to make a tournament please let us know at least 8 hours in advance. Do not let us know just a few hours before the tournament, because all admins could be asleep and we won't get the message.</li>
-                                    <li>You must have a 20+ point differential (So Points you scored in all 3 quarters - Points you allowed must be >=20)</li>
-                                    <li>When you first join the league you will be asked to submit screenshots of all your quarters for your first 5 tournaments. If your average differential is 20+ you will remain with us!</li>
-                                    <li>You must play lineups close to your overall. So if your lineup is 92 you must play a lineup that's 91-93. If there are not enough 90s you can pick 1 lineup that's 89 but only if it's necessary.</li>
-                                    <li>Last but not least, no bullies and no beggars are welcome. Respect each other and stay friendly.</li>
--->
                                 </ol>
 							</article>
 
@@ -352,11 +222,17 @@
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+<!--            <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+            <script src="https://micgoleague-16ca.restdb.io/assets/js/jquery-serialize-object.min.js"></script>
+            <script src="https://micgoleague-16ca.restdb.io/assets/js/jquery.datetimepicker.full.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.1/lodash.min.js"></script>
             <script>
               var membersCall = {
               "async": true,
               "crossDomain": true,
-              "url": "https://micgoleague-16ca.restdb.io/rest/members",
+              "url": 'https://micgoleague-16ca.restdb.io/rest/members?q={"active" : true}&sort=overall&dir=-1&metafields=true',
               "method": "GET",
               "headers": {
                 "content-type": "application/json",
@@ -367,6 +243,26 @@
             $.ajax(membersCall).done(function (response) {
               console.log(response);
               document.getElementById('leagueMembers').innerHTML = response.length + "/32";
+              document.getElementById('membersCount').innerHTML = response.length + "/32 Members";
+              var membersTable = document.getElementById('membersTable');
+              for (var i = 0; i < response.length; i ++){
+                  var trElement = document.createElement('tr');
+                  var username = document.createElement('td');
+                  var overall = document.createElement('td');
+                  var role = document.createElement('td');
+                  var available = document.createElement('td');
+                  username.innerText = response[i].username;
+                  overall.innerText = response[i].overall;
+                  role.innerText = response[i].role;
+                  available.innerText = response[i].available ? "\u2713" : "\u2717";
+                  
+                  trElement.appendChild(username);
+                  trElement.appendChild(overall);
+                  trElement.appendChild(role);
+                  trElement.appendChild(available);
+                  
+                  membersTable.appendChild(trElement);
+              }
             });  
               
             var leagueCall = {
@@ -410,7 +306,36 @@
                   rulesList.appendChild(liElement);
               }
             });     
-   
+            $("#members-form").submit(function (event) {
+                postForm();
+                event.preventDefault();
+                return false;
+            });
+                
+            function postForm(){
+                var username = document.getElementsByName("username")[0].value;
+                var password = document.getElementsByName("password")[0].value;
+                var memberCall = {
+                  "async": true,
+                  "crossDomain": true,
+                  "url": 'https://micgoleague-16ca.restdb.io/rest/members?q={ "username": "' + username + '", "password": "' + password + '" }&metafields=true',
+                  "method": "GET",
+                  "headers": {
+                    "content-type": "application/json",
+                    "x-apikey": "5901d6523d6945a41da27e5a",
+                    "cache-control": "no-cache"
+                  }
+                }
+                $.ajax(memberCall).done(function (response) {
+                  if(response.length > 0){
+                      window.location.href = "./updateMember?id=" +response[0]._id;
+                  } else {
+                      $("#btn-submit").button("reset");
+                      $("#fg-errors").addClass("has-error")
+                        .append("<div class='help-block'>Wrong Username or Password</div>");
+                  }
+                });  
+            }
             </script>
 
 	</body>

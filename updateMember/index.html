@@ -46,29 +46,27 @@
 <body>
   <form role="form" id="members-form">
 <div class="form-group">
-  <label>League: </label><input class="form-control" name="league" data-type="text" type="text">
+  <label>Username: </label><input readonly="true" class="form-control" name="username" data-type="text" type="text">
 </div>
 <div class="form-group">
   <label>Password: </label><input class="form-control" name="password" data-type="text" type="text">
 </div>
 <div class="form-group">
-  <label>Available: </label><input class="form-control" name="available" data-type="bool" type="checkbox">
+  <label>League: </label><input readonly="true" class="form-control" name="league" data-type="text" type="text">
 </div>
 <div class="form-group">
-  <label>Role: </label><input class="form-control" name="role" data-type="text" type="text">
+  <label>Role: </label><input readonly="true" class="form-control" name="role" data-type="text" type="text">
 </div>
 <div class="form-group">
-  <label>Fans: </label><input class="form-control" name="fans" data-type="text" type="text">
+  <label>Available for Tournaments: </label><input class="form-control" name="available" data-type="bool" type="checkbox">
 </div>
 <div class="form-group">
   <label>Overall: </label><input class="form-control" name="overall" data-type="number" type="text">
 </div>
 <div class="form-group">
-  <label>Username: </label><input class="form-control" name="username" data-type="text" type="text">
+  <label>Fans (currently not used): </label><input class="form-control" name="fans" data-type="text" type="text">
 </div>
-<div class="form-group">
-  <label>Active: </label><input class="form-control" name="active" data-type="bool" type="checkbox" checked="true">
-</div>
+
 
   <div id="fg-errors" class="form-group">
   </div>
@@ -76,7 +74,42 @@
 
 <script>
 $(function () {
+    var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
 
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+    
+   var memberId = getUrlParameter("id");
+    console.log(memberId);
+    var leagueCall = {
+              "async": true,
+              "crossDomain": true,
+              "url": 'https://micgoleague-16ca.restdb.io/rest/members?q={ "_id" : "'+memberId+'" }&metafields=true',
+              "method": "GET",
+              "headers": {
+                "content-type": "application/json",
+                "x-apikey": "5901d6523d6945a41da27e5a",
+                "cache-control": "no-cache"
+              }
+            }
+            $.ajax(leagueCall).done(function (response) {
+              document.getElementsByName("username")[0].value = response[0].username;
+              document.getElementsByName("league")[0].value = response[0].league;
+              document.getElementsByName("role")[0].value = response[0].role;
+              document.getElementsByName("password")[0].value = response[0].password;
+              document.getElementsByName("available")[0].checked = response[0].available;
+              document.getElementsByName("overall")[0].value = response[0].overall;
+              document.getElementsByName("fans")[0].value = response[0].fans; 
   // put your own error messages and/or message translation logic here
 
   var errorMessages = {
@@ -94,7 +127,7 @@ $(function () {
     "GENERIC_ERROR": "A server error occured, please reload page"
   }
 
-  var successMessage = "Thank you!";
+  var successMessage = "Your info were updated!";
 
   // enable javascript datetimepicker unless supported
   // Docs and settings: http://xdsoft.net/jqplugins/datetimepicker/
@@ -119,8 +152,8 @@ $(function () {
   var ajaxSettings = {
     "async": true,
     "crossDomain": true,
-    "url": "https://micgoleague-16ca.restdb.io/rest/members",
-    "method": "POST",
+    "url": "https://micgoleague-16ca.restdb.io/rest/members/" + memberId,
+    "method": "PUT",
     "headers": {
       "x-apikey": apikey,
       "content-type": "application/json"
@@ -275,7 +308,7 @@ $(function () {
         $.ajax(ajaxSettings)
         .done(function (response) {
           // replaces form with a thank you message, please replace with your own functionality
-          $("#members-form").replaceWith("<div class='thank-you'>"+successMessage+"</div>");
+          $("#members-form").replaceWith("<div class='thank-you'>"+successMessage+"</div></br><div class='thank-you'><a href='../#members'>Return to Members</a></div>");
         })
         .fail(function (response) {
           $("#btn-submit").button("reset");
@@ -318,6 +351,7 @@ $(function () {
         event.preventDefault();
         return false;
     });
+}); 
 });
 </script></body>
 </html>
