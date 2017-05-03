@@ -241,7 +241,6 @@
               }
             }
             $.ajax(membersCall).done(function (response) {
-              console.log(response);
               document.getElementById('leagueMembers').innerHTML = response.length + "/32";
               document.getElementById('membersCount').innerHTML = response.length + "/32 Members";
               var membersTable = document.getElementById('membersTable');
