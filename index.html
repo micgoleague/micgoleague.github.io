@@ -243,6 +243,28 @@
                 "cache-control": "no-cache"
               }
             }
+            var leagueCall = {
+              "async": true,
+              "crossDomain": true,
+              "url": "https://micgoleague-16ca.restdb.io/rest/league?metafields=true",
+              "method": "GET",
+              "headers": {
+                "content-type": "application/json",
+                "x-apikey": "5901d6523d6945a41da27e5a",
+                "cache-control": "no-cache"
+              }
+            }
+            var rulesCall = {
+              "async": true,
+              "crossDomain": true,
+              "url": "https://micgoleague-16ca.restdb.io/rest/rules?q={}&sort=order",
+              "method": "GET",
+              "headers": {
+                "content-type": "application/json",
+                "x-apikey": "5901d6523d6945a41da27e5a",
+                "cache-control": "no-cache"
+              }
+            }
             $.ajax(membersCall).done(function (response) {
               document.getElementById('leagueMembers').innerHTML = response.length + "/32";
               document.getElementById('membersCount').innerHTML = response.length + "/32 Members";
@@ -265,49 +287,35 @@
                   
                   membersTable.appendChild(trElement);
               }
+              setTimeout(function(){
+                    $.ajax(leagueCall).done(function (response) {
+                      document.getElementById('leagueName').innerHTML = response[0].name;
+                      document.getElementById('leagueRank').innerHTML = response[0].rank;
+                      document.getElementById('leagueRecord').innerHTML = response[0].wins + "-" + response[0].losses + "-" + response[0].draws;
+                      document.getElementById('leaguePointsFor').innerHTML = response[0].points_for;
+                      document.getElementById('leaguePointsAgainst').innerHTML = response[0].points_against;
+                      var changed = new Date(response[0]._changed);
+                      var changedDate = changed.getDate() + '/' + (changed.getMonth() +1) + '/' + changed.getFullYear();
+                      document.getElementById('leagueChanged').innerHTML = "Last Update On " + changedDate;
+                      setTimeout(function(){
+                         $.ajax(rulesCall).done(function (response) {
+                          var rulesList = document.getElementById('rulesList');
+                          for (var i = 0; i < response.length; i++) {
+                              var liElement = document.createElement('li');
+                              liElement.innerText = response[i].text;
+                              rulesList.appendChild(liElement);
+                          }
+                        });    
+                      }, 2000);
+                    }); 
+              }, 2000);
             });  
               
-            var leagueCall = {
-              "async": true,
-              "crossDomain": true,
-              "url": "https://micgoleague-16ca.restdb.io/rest/league?metafields=true",
-              "method": "GET",
-              "headers": {
-                "content-type": "application/json",
-                "x-apikey": "5901d6523d6945a41da27e5a",
-                "cache-control": "no-cache"
-              }
-            }
-            $.ajax(leagueCall).done(function (response) {
-              document.getElementById('leagueName').innerHTML = response[0].name;
-              document.getElementById('leagueRank').innerHTML = response[0].rank;
-              document.getElementById('leagueRecord').innerHTML = response[0].wins + "-" + response[0].losses + "-" + response[0].draws;
-              document.getElementById('leaguePointsFor').innerHTML = response[0].points_for;
-              document.getElementById('leaguePointsAgainst').innerHTML = response[0].points_against;
-              var changed = new Date(response[0]._changed);
-              var changedDate = changed.getDate() + '/' + (changed.getMonth() +1) + '/' + changed.getFullYear();
-              document.getElementById('leagueChanged').innerHTML = "Last Update On " + changedDate;
-            }); 
             
-            var rulesCall = {
-              "async": true,
-              "crossDomain": true,
-              "url": "https://micgoleague-16ca.restdb.io/rest/rules?q={}&sort=order",
-              "method": "GET",
-              "headers": {
-                "content-type": "application/json",
-                "x-apikey": "5901d6523d6945a41da27e5a",
-                "cache-control": "no-cache"
-              }
-            }
-            $.ajax(rulesCall).done(function (response) {
-              var rulesList = document.getElementById('rulesList');
-              for (var i = 0; i < response.length; i++) {
-                  var liElement = document.createElement('li');
-                  liElement.innerText = response[i].text;
-                  rulesList.appendChild(liElement);
-              }
-            });     
+            
+            
+            
+             
             $("#members-form").submit(function (event) {
                 postForm();
                 event.preventDefault();
